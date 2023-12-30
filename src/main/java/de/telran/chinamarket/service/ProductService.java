@@ -6,4 +6,6 @@ public interface ProductService {
 
     Product getById(Integer id);
 
+    void save(Product product);
+
 }

@@ -23,4 +23,13 @@ public class ProductServiceImpl implements ProductService {
             return null;
         }
     }
+
+    @Override
+    public void save(Product product) {
+        if (product == null) {
+            return;
+        }
+
+        productRepository.save(product);
+    }
 }
