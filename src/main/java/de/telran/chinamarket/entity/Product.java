@@ -1,9 +1,7 @@
 package de.telran.chinamarket.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import de.telran.chinamarket.enums.ProductStatus;
+import jakarta.persistence.*;
 import lombok.Data;
 
 @Data
@@ -12,33 +10,38 @@ import lombok.Data;
 public class Product {
 
     @Id
-    @Column
-    private Integer id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private Long id;
 
-    @Column
+    @Column(name = "name")
     private String name;
 
-    @Column
+    @Column(name = "status")
+    @Enumerated(EnumType.STRING)
+    private ProductStatus status;
+
+    @Column(name = "small_description")
     private String smallDescription;
 
-    @Column
+    @Column(name = "big_description")
     private String bigDescription;
 
-    @Column
+    @Column(name = "small_image_url")
     private String smallImageUrl;
 
-    @Column
+    @Column(name = "big_image_url")
     private String bigImageUrl;
 
-    @Column
+    @Column(name = "category_id")
     private Integer categoryId;
 
-    @Column
+    @Column(name = "price")
     private Double price;
 
-
-
-
+//    @ManyToOne
+//    @JoinColumn(name = "product_category/id")
+//    private ProductCategory productCategory;
 
 
 

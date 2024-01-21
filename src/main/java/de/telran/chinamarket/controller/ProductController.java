@@ -13,7 +13,7 @@ public class ProductController {
 
     private final ProductService productService;
 
-    @GetMapping(value = "/product{id}")
+    @GetMapping(value = "/product/{id}")
     public Product getProductById(@PathVariable(value = "id") Integer id) {
         Product product = productService.getByID(id);
         return product;

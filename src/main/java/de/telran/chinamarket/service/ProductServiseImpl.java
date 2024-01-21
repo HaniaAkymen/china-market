@@ -1,6 +1,7 @@
 package de.telran.chinamarket.service;
 
 import de.telran.chinamarket.entity.Product;
+import de.telran.chinamarket.enums.ProductStatus;
 import de.telran.chinamarket.repository.ProductRepository;
 import de.telran.chinamarket.service.ProductService;
 import lombok.RequiredArgsConstructor;
@@ -31,6 +32,18 @@ public class ProductServiseImpl implements ProductService {
         }
 
         productRepository.save(product);
+    }
+
+    @Override
+    public void inactiveById(Integer id) {
+
+        Product product = getByID(id);
+        if (product == null){
+            return;
+        }
+        product.setStatus(ProductStatus.INACTIVE);
+        productRepository.save(product);
+
     }
 
 }

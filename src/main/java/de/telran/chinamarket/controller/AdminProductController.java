@@ -3,9 +3,7 @@ package de.telran.chinamarket.controller;
 import de.telran.chinamarket.entity.Product;
 import de.telran.chinamarket.service.ProductService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
@@ -18,6 +16,12 @@ public class AdminProductController {
         System.out.println(product.getName());
 
         productService.save(product);
+
+    }
+    @DeleteMapping(value = "/admin/product/delete/{id}")
+    public void deleteProduct(@PathVariable Integer id) {
+
+        productService.inactiveById(id);
 
     }
 
