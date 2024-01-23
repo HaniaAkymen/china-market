@@ -27,14 +27,14 @@ public class Product {
     @Column(name = "big_description")
     private String bigDescription;
 
-    @Column(name = "small_image_url")
-    private String smallImageUrl;
+//    @Column(name = "small_image_url")
+//    private String smallImageUrl;
+//
+//    @Column(name = "big_image_url")
+//    private String bigImageUrl;
 
-    @Column(name = "big_image_url")
-    private String bigImageUrl;
-
-    @Column(name = "category_id")
-    private Integer categoryId;
+//    @Column(name = "category_id")
+//    private Integer categoryId;
 
     @Column(name = "price")
     private Double price;

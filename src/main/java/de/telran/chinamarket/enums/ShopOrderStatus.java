@@ -1,6 +1,6 @@
 package de.telran.chinamarket.enums;
 
-public enum OrderStatus {
+public enum ShopOrderStatus {
 
     ACTIVE,
     INACTIVE,
