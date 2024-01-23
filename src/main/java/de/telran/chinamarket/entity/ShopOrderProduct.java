@@ -4,9 +4,9 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 @Entity
-@Table(name = "order_product")
+@Table(name = "shop_order_product")
 @Data
-public class OrderProduct {
+public class ShopOrderProduct {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,13 +16,11 @@ public class OrderProduct {
     @Column(name = "quantity")
     private Integer quantity;
 
-//    @OneToMany
-//    @JoinColumn(name = "product/id")
-//    private Product product;
+    @ManyToOne
+    private Product product;
 
-//    @OneToMany
-//    @JoinColumn(name = "order/id")
-//    private Order order;
+    @ManyToOne
+    private ShopOrder shopOrder;
 
 
 }

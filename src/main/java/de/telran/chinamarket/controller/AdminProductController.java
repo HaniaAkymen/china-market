@@ -18,8 +18,8 @@ public class AdminProductController {
         productService.save(product);
 
     }
-    @DeleteMapping(value = "/admin/product/delete/{id}")
-    public void deleteProduct(@PathVariable Integer id) {
+    @PutMapping(value = "/admin/product/inactive/{id}")
+    public void inactiveProduct(@PathVariable Integer id) {
 
         productService.inactiveById(id);
 

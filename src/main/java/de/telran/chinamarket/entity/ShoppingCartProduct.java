@@ -3,7 +3,7 @@ package de.telran.chinamarket.entity;
 import jakarta.persistence.*;
 import lombok.Data;
 
-@Table(name = "schopping_cart_product")
+@Table(name = "shopping_cart_product")
 @Data
 @Entity
 public class ShoppingCartProduct {
@@ -16,12 +16,13 @@ public class ShoppingCartProduct {
     @Column(name = "quantity")
     private Integer quantity;
 
+
 //    @OneToMany
 //    @JoinColumn(name = "product/id")
 //    private Product product;
 //
 //    @OneToMany
-//    @JoinColumn(name = "shopping_cart/id")
+//    @JoinColumn(name = "customer/id")
 //    private ShoppingCart shoppingCart;
 
 

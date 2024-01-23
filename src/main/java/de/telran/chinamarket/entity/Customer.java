@@ -23,8 +23,8 @@ public class Customer {
     @Enumerated(EnumType.STRING)
     private CustomerInfoStatus status;
 
-    @Column(name = "name")
-    private String name;
+//    @Column(name = "name")
+//    private String name;
 
     @Column(name = "first_name")
     private String firstName;
@@ -35,17 +35,15 @@ public class Customer {
     @Column(name = "email")
     private String email;
 
-    @Column(length = 15, name = "password")
+    @Column(length = 32, name = "password")
     private String password;
 
     @Column(name = "address")
     private String adress;
 
-    @Column(name = "phone")
+    @Column(length = 15, name = "phone")
     private Long phone;
 
-    //created At
-    //updated At
 
     //accuant
     //admin
