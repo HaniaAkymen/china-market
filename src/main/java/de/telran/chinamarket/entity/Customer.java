@@ -17,7 +17,7 @@ public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private Long id;
+    private Integer id;
 
     @Column(name = "status")
     @Enumerated(EnumType.STRING)
@@ -42,7 +42,7 @@ public class Customer {
     private String adress;
 
     @Column(length = 15, name = "phone")
-    private Long phone;
+    private String phone;
 
 
     //accuant

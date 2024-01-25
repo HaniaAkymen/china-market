@@ -17,13 +17,11 @@ public class ShoppingCartProduct {
     private Integer quantity;
 
 
-//    @OneToMany
-//    @JoinColumn(name = "product/id")
-//    private Product product;
-//
-//    @OneToMany
-//    @JoinColumn(name = "customer/id")
-//    private ShoppingCart shoppingCart;
+    @ManyToOne
+    private Product product;
+
+    @ManyToOne
+    private Customer customer;
 
 
 }
