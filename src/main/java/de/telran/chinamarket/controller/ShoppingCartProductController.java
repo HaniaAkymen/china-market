@@ -22,5 +22,16 @@ public class ShoppingCartProductController {
 
     }
 
+    @PostMapping(value = "/shopping_cart_product/delete_product_from_cart" )
+    public void deleteProductFromCart(@RequestBody ShoppingCartProductDTO shoppingCartProductDTO){
+
+        shoppingCartProductService.deleteProductFromCart(shoppingCartProductDTO);
+
+    }
+
+
+
+
+
 
 }

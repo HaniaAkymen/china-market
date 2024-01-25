@@ -7,6 +7,8 @@ public interface ShoppingCartProductService {
 
     void addProductToCart (ShoppingCartProductDTO shoppingCartProductDTO);
 
+    void deleteProductFromCart(ShoppingCartProductDTO shoppingCartProductDTO);
+
 
 
 

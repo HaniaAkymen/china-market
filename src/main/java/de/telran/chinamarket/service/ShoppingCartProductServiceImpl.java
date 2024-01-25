@@ -24,7 +24,8 @@ public class ShoppingCartProductServiceImpl implements ShoppingCartProductServic
 
     private final ProductRepository productRepository;
 
-   public void addProductToCart (ShoppingCartProductDTO shoppingCartProductDTO) {
+   @Override
+    public void addProductToCart (ShoppingCartProductDTO shoppingCartProductDTO) {
        System.out.println(shoppingCartProductDTO);
 
        ShoppingCartProduct shoppingCartProductEntity = new ShoppingCartProduct();
@@ -46,4 +47,20 @@ public class ShoppingCartProductServiceImpl implements ShoppingCartProductServic
 
    }
 
+    @Override
+    public void deleteProductFromCart(ShoppingCartProductDTO shoppingCartProductDTO) {
+
+        System.out.println("----------------------------------------");
+        System.out.println(shoppingCartProductDTO);
+
+       ShoppingCartProduct shoppingCartProductToDelete = shoppingCartProductRepository.getByProductIdAndCustomerId(shoppingCartProductDTO.getCustomerID(), shoppingCartProductDTO.getProductID());
+
+        System.out.println("----------------------------------------");
+        System.out.println(shoppingCartProductToDelete);
+
+       shoppingCartProductRepository.delete(shoppingCartProductToDelete);
+
+
+
+    }
 }
