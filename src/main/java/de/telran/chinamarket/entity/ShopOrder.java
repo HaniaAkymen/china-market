@@ -1,8 +1,13 @@
 package de.telran.chinamarket.entity;
 
-import de.telran.chinamarket.enums.ProductStatus;
+import de.telran.chinamarket.enums.DeliveryType;
+import de.telran.chinamarket.enums.PaymentType;
+import de.telran.chinamarket.enums.ShopOrderStatus;
 import jakarta.persistence.*;
 import lombok.Data;
+
+
+import java.util.List;
 
 @Entity
 @Data
@@ -14,16 +19,23 @@ public class ShopOrder {
     @Column(name = "id")
     private Long id;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "payment_type")
-    private Long paymentType;
+    private PaymentType paymentType;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "delivery_type")
-    private String deliveryType;
+    private DeliveryType deliveryType;
 
     @Column(name = "status")
     @Enumerated(EnumType.STRING)
-    private ProductStatus status;
+    private ShopOrderStatus status;
 
+    @ManyToOne
+    private Customer customer;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "shopOrder")
+    private List<ShopOrderProduct> shopOrderProducts;
 
 
 }
