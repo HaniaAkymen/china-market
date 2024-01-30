@@ -1,4 +1,4 @@
-package de.telran.chinamarket.service;
+package de.telran.chinamarket.service.impl;
 
 import de.telran.chinamarket.entity.Customer;
 import de.telran.chinamarket.entity.ShopOrder;
@@ -6,11 +6,11 @@ import de.telran.chinamarket.entity.ShopOrderProduct;
 import de.telran.chinamarket.entity.ShoppingCart;
 import de.telran.chinamarket.enums.DeliveryType;
 import de.telran.chinamarket.enums.PaymentType;
-import de.telran.chinamarket.enums.ProductStatus;
 import de.telran.chinamarket.enums.ShopOrderStatus;
 import de.telran.chinamarket.repository.CustomerRepository;
 import de.telran.chinamarket.repository.ShopOrderRepository;
 import de.telran.chinamarket.repository.ShoppingCartRepository;
+import de.telran.chinamarket.service.interfaces.ShopOrderService;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -22,7 +22,7 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-public class ShopOrderServiceImpl implements ShopOrderService{
+public class ShopOrderServiceImpl implements ShopOrderService {
 
     private final ShoppingCartRepository shoppingCartRepository;
 
@@ -63,6 +63,14 @@ public class ShopOrderServiceImpl implements ShopOrderService{
         shopOrderRepository.save(shopOrder);
 
         shoppingCartRepository.deleteByCustomerID(customerID);
+
+    }
+
+    @Transactional
+    @Override
+
+     public List<ShopOrder> getShopOrderList (){
+        return shopOrderRepository.findAll();
 
     }
 

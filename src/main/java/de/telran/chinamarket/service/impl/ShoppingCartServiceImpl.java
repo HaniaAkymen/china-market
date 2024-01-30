@@ -1,4 +1,4 @@
-package de.telran.chinamarket.service;
+package de.telran.chinamarket.service.impl;
 
 import de.telran.chinamarket.entity.Customer;
 import de.telran.chinamarket.entity.Product;
@@ -6,6 +6,7 @@ import de.telran.chinamarket.repository.ProductRepository;
 import de.telran.chinamarket.entity.ShoppingCart;
 import de.telran.chinamarket.repository.ShoppingCartRepository;
 import de.telran.chinamarket.repository.CustomerRepository;
+import de.telran.chinamarket.service.interfaces.ShoppingCartService;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -43,9 +44,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
         shoppingCartEntity.setProduct(productOptional.get());
 
         shoppingCartRepository.save(shoppingCartEntity);
-
     }
-
 
     @Transactional
     @Override
@@ -57,13 +56,11 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
         System.out.println(shoppingCartToDelete);
 
         shoppingCartRepository.delete(shoppingCartToDelete);
-
-
     }
+
     @Transactional
     @Override
     public void changeQuantityProductFromCart(Integer productID, Integer quantity, Integer customerID) {
-
 
         ShoppingCart shoppingCartProductChange = shoppingCartRepository.getByProductIdAndCustomerId(customerID, productID);
 

@@ -10,8 +10,8 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name = "customer")
 @Data
-//@AllArgsConstructor
-//@NoArgsConstructor
+@AllArgsConstructor
+@NoArgsConstructor
 public class Customer {
 
     @Id
@@ -23,27 +23,23 @@ public class Customer {
     @Enumerated(EnumType.STRING)
     private CustomerInfoStatus status;
 
-//    @Column(name = "name")
-//    private String name;
-
-    @Column(name = "first_name")
+    @Column(nullable = false, name = "first_name")
     private String firstName;
 
-    @Column(name = "last_name")
+    @Column(nullable = false, name = "last_name")
     private String lastName;
 
-    @Column(name = "email")
+    @Column(nullable = false, name = "email")
     private String email;
 
-    @Column(length = 32, name = "password")
+    @Column(nullable = false, length = 32, name = "password")
     private String password;
 
-    @Column(name = "address")
+    @Column(nullable = false, name = "address")
     private String adress;
 
-    @Column(length = 15, name = "phone")
+    @Column(nullable = false, length = 15, name = "phone")
     private String phone;
-
 
     //accuant
     //admin

@@ -4,6 +4,8 @@ import de.telran.chinamarket.enums.ProductStatus;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.List;
+
 @Data
 @Entity
 @Table(name = "product")
@@ -33,11 +35,11 @@ public class Product {
 //    @Column(name = "big_image_url")
 //    private String bigImageUrl;
 
-//    @Column(name = "category_id")
-//    private Integer categoryId;
-
     @Column(name = "price")
     private Double price;
+
+    @OneToMany
+    private List<Photo> photos;
 
 //    @ManyToOne
 //    @JoinColumn(name = "product_category/id")

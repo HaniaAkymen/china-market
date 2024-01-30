@@ -1,4 +1,4 @@
-package de.telran.chinamarket.service;
+package de.telran.chinamarket.service.interfaces;
 
 import de.telran.chinamarket.dto.ShoppingCartProductDTO;
 

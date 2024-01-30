@@ -1,7 +1,7 @@
 package de.telran.chinamarket.controller;
 
 import de.telran.chinamarket.dto.ShoppingCartProductDTO;
-import de.telran.chinamarket.service.ShoppingCartService;
+import de.telran.chinamarket.service.interfaces.ShoppingCartService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

@@ -1,9 +1,9 @@
-package de.telran.chinamarket.service;
+package de.telran.chinamarket.service.impl;
 
 import de.telran.chinamarket.entity.Product;
 import de.telran.chinamarket.enums.ProductStatus;
 import de.telran.chinamarket.repository.ProductRepository;
-import de.telran.chinamarket.service.ProductService;
+import de.telran.chinamarket.service.interfaces.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

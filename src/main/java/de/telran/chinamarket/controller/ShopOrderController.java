@@ -1,9 +1,7 @@
 package de.telran.chinamarket.controller;
 
 import de.telran.chinamarket.dto.ShopOrderDTO;
-import de.telran.chinamarket.enums.DeliveryType;
-import de.telran.chinamarket.enums.PaymentType;
-import de.telran.chinamarket.service.ShopOrderService;
+import de.telran.chinamarket.service.interfaces.ShopOrderService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

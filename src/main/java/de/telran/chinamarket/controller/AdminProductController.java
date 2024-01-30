@@ -1,7 +1,7 @@
 package de.telran.chinamarket.controller;
 
 import de.telran.chinamarket.entity.Product;
-import de.telran.chinamarket.service.ProductService;
+import de.telran.chinamarket.service.interfaces.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
