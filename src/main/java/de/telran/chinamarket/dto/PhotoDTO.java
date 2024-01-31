@@ -5,8 +5,8 @@ import lombok.Data;
 @Data
 public class PhotoDTO {
 
-    private String PhotoURL;
+    private String photoUrl;
 
-    private Integer ProductID;
+    private Integer productID;
 
 }

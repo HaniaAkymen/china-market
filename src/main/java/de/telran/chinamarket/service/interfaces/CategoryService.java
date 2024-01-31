@@ -13,6 +13,8 @@ public interface CategoryService {
 
    List<Category> getAllRootCategorys();
 
+   void deleteCategory(Integer id);
+
 
 
 

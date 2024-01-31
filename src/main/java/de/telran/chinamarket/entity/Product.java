@@ -38,12 +38,11 @@ public class Product {
     @Column(name = "price")
     private Double price;
 
-    @OneToMany
+    @OneToMany(mappedBy = "product")
     private List<Photo> photos;
 
-//    @ManyToOne
-//    @JoinColumn(name = "product_category/id")
-//    private ProductCategory productCategory;
+    @ManyToOne
+    private Category category;
 
 
 

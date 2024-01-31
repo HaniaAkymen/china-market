@@ -13,8 +13,10 @@ public class AdminPhotoController {
 
     @PostMapping(value = "/admin/photo/save")
     public void savePhoto(@RequestBody PhotoDTO photoDTO) {
+        System.out.println("*************");
+        System.out.println(photoDTO);
 
-        photoService.savePhoto(photoDTO.getProductID(), photoDTO.getPhotoURL());
+        photoService.savePhoto(photoDTO.getProductID(), photoDTO.getPhotoUrl());
     }
 
     @DeleteMapping(value = "/admin/photo/delete/{id}")

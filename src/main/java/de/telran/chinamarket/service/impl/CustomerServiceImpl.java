@@ -47,33 +47,13 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Transactional
     @Override
-    public void updateCustomerById(Integer id) {
+    public void setCustomerStatus(CustomerInfoStatus status, Integer id) {
 
         Customer updateCustomer = getCustomerById(id);
         if (updateCustomer == null) {
             return;
         }
-        updateCustomer.setId(id);
-
-        /*    updateCustomer.setStatus(customerStatus -> {
-                    switch (customerStatus) {
-                        case ACTIVE:
-                            updateCustomer.setStatus(CustomerInfoStatus.ACTIVE);
-                            break;
-                        case INACTIVE:
-                            updateCustomer.setStatus(CustomerInfoStatus.INACTIVE);
-                            break;
-                        case BLOCKED:
-                            updateCustomer.setStatus(CustomerInfoStatus.BLOCKED);
-                            break;
-                        default:
-                    }
-                }
-        );*/
-
-        updateCustomer.setStatus(CustomerInfoStatus.ACTIVE);
-        updateCustomer.setStatus(CustomerInfoStatus.INACTIVE);
-        updateCustomer.setStatus(CustomerInfoStatus.BLOCKED);
+        updateCustomer.setStatus(status);
 
         customerRepository.save(updateCustomer);
     }
@@ -87,7 +67,7 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Transactional
     @Override
-    public List<Customer> getCustomersByStatus(CustomerInfoStatus status) {
+    public List<Customer> getCustomersByStatus(String status) {
         return customerRepository.findCustomerByStatus(status);
     }
 

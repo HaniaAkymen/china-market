@@ -14,22 +14,25 @@ public class AdminCustomerController {
 
     private final CustomerService customerService;
 
-    @PutMapping(value = "customer/{id}")
-    public void updateCustomerBy(@PathVariable(value = "id") Integer id) {
-        customerService.updateCustomerById(id);
-    }
 
     @GetMapping(value = "/customer/get_all")
     public List<Customer> getALLCustomers() {
         return customerService.getAllCustomers();
 
     }
+    @GetMapping(value = "/customer/status/{status}")
+    public List<Customer> getCustomersByStatus(@PathVariable(name = "status") String status){
 
-    @GetMapping(value = "/customer/status")
-    public List<Customer> getCustomersByStatus(@RequestParam(name = "status") CustomerInfoStatus status){
         return customerService.getCustomersByStatus(status);
-
     }
+
+    @PutMapping(value = "/admin/customer/{id}/set_status/{status}")
+    public void setCustomerStatus(@PathVariable(name = "status") CustomerInfoStatus status, @PathVariable(name = "id") Integer id) {
+
+        customerService.setCustomerStatus(status, id);
+    }
+
+
 
 
 

@@ -7,6 +7,7 @@ import de.telran.chinamarket.service.interfaces.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -46,4 +47,30 @@ public class ProductServiseImpl implements ProductService {
 
     }
 
+    @Override
+    public void activeById(Integer id) {
+
+        Product product = getByID(id);
+        if (product == null){
+            return;
+        }
+        product.setStatus(ProductStatus.ACTIVE);
+        productRepository.save(product);
+
+    }
+
+    @Override
+    public List<Product> getProductsByCategoryId(Integer categoryId) {
+
+       return productRepository.getProductsByCategoryId(categoryId);
+
+    }
+
+    @Override
+
+    public List<Product> getAllProducts() {
+
+        return productRepository.findAll();
+
+    }
 }

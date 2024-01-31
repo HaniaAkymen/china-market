@@ -30,6 +30,10 @@ public class PhotoSeviceImpl implements PhotoService {
     @Override
     public void savePhoto(Integer productID, String url) {
 
+        System.out.println("__________________________");
+        System.out.println(productID);
+        System.out.println(url);
+
         Photo photo = new Photo();
         photo.setUrl(url);
 
@@ -53,6 +57,8 @@ public class PhotoSeviceImpl implements PhotoService {
 
         photoRepository.delete(photoOptional.get());
     }
+
+
 
 
 }

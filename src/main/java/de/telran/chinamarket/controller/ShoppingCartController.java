@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor
-public class ShoppingCartProductController {
+public class ShoppingCartController {
 
     private final ShoppingCartService shoppingCartService;
 

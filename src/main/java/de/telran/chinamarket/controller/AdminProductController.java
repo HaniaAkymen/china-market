@@ -5,6 +5,8 @@ import de.telran.chinamarket.service.interfaces.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequiredArgsConstructor
 public class AdminProductController {
@@ -24,6 +26,22 @@ public class AdminProductController {
         productService.inactiveById(id);
 
     }
+
+    @PutMapping(value = "/admin/product/active/{id}")
+    public void activeProduct(@PathVariable Integer id) {
+
+        productService.activeById(id);
+
+    }
+
+    @GetMapping(value = "/admin/get_product_list" )
+    public List<Product> getListProduct(){
+
+       return productService.getAllProducts();
+
+    }
+
+
 
 
 }

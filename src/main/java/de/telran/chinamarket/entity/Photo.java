@@ -1,5 +1,6 @@
 package de.telran.chinamarket.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -17,6 +18,7 @@ public class Photo {
     private String url;
 
    @ManyToOne
+   @JsonIgnore
    private Product product;
 
 
