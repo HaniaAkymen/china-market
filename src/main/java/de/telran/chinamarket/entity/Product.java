@@ -1,5 +1,6 @@
 package de.telran.chinamarket.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import de.telran.chinamarket.enums.ProductStatus;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -42,6 +43,7 @@ public class Product {
     private List<Photo> photos;
 
     @ManyToOne
+    @JsonIgnore
     private Category category;
 
 

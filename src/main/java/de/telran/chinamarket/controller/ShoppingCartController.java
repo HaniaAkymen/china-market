@@ -1,11 +1,12 @@
 package de.telran.chinamarket.controller;
 
 import de.telran.chinamarket.dto.ShoppingCartProductDTO;
+import de.telran.chinamarket.entity.ShoppingCart;
 import de.telran.chinamarket.service.interfaces.ShoppingCartService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -35,6 +36,13 @@ public class ShoppingCartController {
 
         shoppingCartService.changeQuantityProductFromCart(shoppingCartProductDTO.getProductID(),shoppingCartProductDTO.getQuantity(),shoppingCartProductDTO.getCustomerID());
     }
+
+    @GetMapping(value = "/shopping_cart/get/{customerId}")
+    public List<ShoppingCart> getShoppingCart(@PathVariable(name = "customerId") Integer customerId){
+        return shoppingCartService.getListShoppingCart(customerId);
+    }
+
+
 
 
 

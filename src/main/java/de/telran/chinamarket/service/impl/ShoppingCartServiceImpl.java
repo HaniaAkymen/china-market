@@ -8,10 +8,12 @@ import de.telran.chinamarket.repository.ShoppingCartRepository;
 import de.telran.chinamarket.repository.CustomerRepository;
 import de.telran.chinamarket.service.interfaces.ShoppingCartService;
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.persistence.Id;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -72,5 +74,11 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
         }
 
 
+    }
+
+    @Transactional
+    @Override
+    public List<ShoppingCart> getListShoppingCart(Integer customerId){
+        return shoppingCartRepository.getListByCustomerID(customerId);
     }
 }
