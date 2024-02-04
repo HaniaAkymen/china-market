@@ -18,14 +18,14 @@ public class ProductController {
 
     private final CategoryService categoryService;
 
-    @GetMapping(value = "/product/{id}")
+    @GetMapping(value = "/public/product/{id}")
     public Product getProductById(@PathVariable(value = "id") Integer id) {
         Product product = productService.getByID(id);
         return product;
 
     }
 
-    @GetMapping(value = "/product/category/{id}")
+    @GetMapping(value = "/public/product/category/{id}")
     public List<Product> getProductsByCategory (@PathVariable(value = "id") Integer categoryId) {
         return productService.getProductsByCategoryId(categoryId);
 

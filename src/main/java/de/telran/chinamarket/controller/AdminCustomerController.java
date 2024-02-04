@@ -15,12 +15,12 @@ public class AdminCustomerController {
     private final CustomerService customerService;
 
 
-    @GetMapping(value = "/customer/get_all")
+    @GetMapping(value = "/admin/customer/get_all")
     public List<Customer> getALLCustomers() {
         return customerService.getAllCustomers();
 
     }
-    @GetMapping(value = "/customer/status/{status}")
+    @GetMapping(value = "/admin/customer/status/{status}")
     public List<Customer> getCustomersByStatus(@PathVariable(name = "status") String status){
 
         return customerService.getCustomersByStatus(status);

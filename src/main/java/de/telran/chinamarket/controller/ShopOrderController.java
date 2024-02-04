@@ -13,7 +13,7 @@ public class ShopOrderController {
 
     private final ShopOrderService shopOrderService;
 
-    @PostMapping(value = "/shop_order/save_order")
+    @PostMapping(value = "/customer/shop_order/save_order")
     public void addOrder(@RequestBody ShopOrderDTO shopOrderDTO){
 
         shopOrderService.saveOrder(shopOrderDTO.getPaymentType(),shopOrderDTO.getDeliveryType(), shopOrderDTO.getCustomerID());

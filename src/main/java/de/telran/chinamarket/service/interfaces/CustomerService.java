@@ -18,4 +18,6 @@ public interface CustomerService {
     List<Customer> getCustomersByStatus(String status); //сделать изменением парамметров?
 
 
+
+
 }

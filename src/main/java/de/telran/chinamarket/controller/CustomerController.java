@@ -16,10 +16,12 @@ public class CustomerController {
         Customer customer = customerService.getCustomerById(id);
         return customer;
     }
-    @PostMapping(value = "/customer/add")
+    @PostMapping(value = "/public/customer/add")
     public void addNewCustomer(@RequestBody Customer customer){
         customerService.saveCustomerByID(customer);
     }
+
+
 
 
 

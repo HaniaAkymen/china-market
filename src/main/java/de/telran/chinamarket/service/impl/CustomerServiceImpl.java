@@ -1,10 +1,14 @@
 package de.telran.chinamarket.service.impl;
 
 import de.telran.chinamarket.entity.Customer;
+import de.telran.chinamarket.entity.SecurityAccount;
 import de.telran.chinamarket.enums.CustomerInfoStatus;
+import de.telran.chinamarket.enums.UserRole;
 import de.telran.chinamarket.repository.CustomerRepository;
+import de.telran.chinamarket.repository.SecurityAccountRepository;
 import de.telran.chinamarket.service.interfaces.CustomerService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,6 +26,8 @@ public class CustomerServiceImpl implements CustomerService {
 
     private final CustomerRepository customerRepository;
 
+    private final SecurityAccountRepository securityAccountRepository;
+
     @Transactional
     @Override
     public void saveCustomerByID(Customer customer) {
@@ -29,7 +35,26 @@ public class CustomerServiceImpl implements CustomerService {
             return;
         }
 
+        SecurityAccount securityAccount;
+
+        if (customer.getId() == null) {
+            securityAccount = new SecurityAccount();
+        }
+        else {
+            securityAccount = securityAccountRepository.findByLogin(customer.getEmail());
+
+        }
+
+        securityAccount.setRole(UserRole.CUSTOMER);
+        securityAccount.setLogin(customer.getEmail());
+
+        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+        String encodePassword = bCryptPasswordEncoder.encode(customer.getPassword());
+
+        securityAccount.setPassword(encodePassword);
+
         customer.setStatus(CustomerInfoStatus.ACTIVE);
+        customer.setSecurityAccount(securityAccount);
         customerRepository.save(customer);
 
     }
