@@ -4,6 +4,7 @@ import de.telran.chinamarket.entity.Product;
 import de.telran.chinamarket.enums.ProductStatus;
 import de.telran.chinamarket.repository.ProductRepository;
 import de.telran.chinamarket.service.interfaces.ProductService;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -22,16 +23,12 @@ public class ProductServiseImpl implements ProductService {
         if(optional.isPresent()){
             return optional.get();
         } else {
-            return null;
+            throw new EntityNotFoundException("product " + id + " not found");
         }
     }
 
     @Override
     public void save(Product product) {
-        if (product == null) {
-            return;
-        }
-
         productRepository.save(product);
     }
 
