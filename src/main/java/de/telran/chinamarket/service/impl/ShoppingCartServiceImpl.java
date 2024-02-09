@@ -8,7 +8,6 @@ import de.telran.chinamarket.repository.ShoppingCartRepository;
 import de.telran.chinamarket.repository.CustomerRepository;
 import de.telran.chinamarket.service.interfaces.ShoppingCartService;
 import jakarta.persistence.EntityNotFoundException;
-import jakarta.persistence.Id;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -50,12 +49,9 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
 
     @Transactional
     @Override
-    public void deleteProductFromCart(Integer productID, Integer quantity, Integer customerID) {
+    public void deleteProductFromCart(Integer customerID, Integer productID) {
 
         ShoppingCart shoppingCartToDelete = shoppingCartRepository.getByProductIdAndCustomerId(customerID, productID);
-
-        System.out.println("----------------------------------------");
-        System.out.println(shoppingCartToDelete);
 
         shoppingCartRepository.delete(shoppingCartToDelete);
     }

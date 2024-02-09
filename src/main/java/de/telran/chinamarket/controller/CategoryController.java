@@ -3,7 +3,6 @@ package de.telran.chinamarket.controller;
 import de.telran.chinamarket.entity.Category;
 import de.telran.chinamarket.service.interfaces.CategoryService;
 import lombok.RequiredArgsConstructor;
-import org.apache.catalina.LifecycleState;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;

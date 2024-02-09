@@ -9,7 +9,7 @@ public interface ShoppingCartService {
 
     void addProductToCart (Integer productID, Integer quantity, Integer customerID);
 
-    void deleteProductFromCart(Integer productID, Integer quantity, Integer customerID);
+    void deleteProductFromCart(Integer productID, Integer customerID);
 
     void changeQuantityProductFromCart(Integer productID, Integer quantity, Integer customerID);
 

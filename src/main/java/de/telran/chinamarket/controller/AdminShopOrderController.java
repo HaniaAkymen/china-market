@@ -1,7 +1,6 @@
 package de.telran.chinamarket.controller;
 
 import de.telran.chinamarket.entity.ShopOrder;
-import de.telran.chinamarket.enums.CustomerInfoStatus;
 import de.telran.chinamarket.enums.ShopOrderStatus;
 import de.telran.chinamarket.service.interfaces.ShopOrderService;
 import lombok.RequiredArgsConstructor;
@@ -20,6 +19,7 @@ public class AdminShopOrderController {
 
     @GetMapping(value = "/admin/order/list")
     public List<ShopOrder> getShopOrderList(){
+
         return shopOrderService.getShopOrderList();
     }
 

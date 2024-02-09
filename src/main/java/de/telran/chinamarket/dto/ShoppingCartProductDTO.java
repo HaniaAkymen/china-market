@@ -9,6 +9,4 @@ public class ShoppingCartProductDTO {
 
     private Integer quantity;
 
-    private Integer customerID;
-
 }

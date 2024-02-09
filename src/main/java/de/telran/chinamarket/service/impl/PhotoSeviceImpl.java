@@ -3,7 +3,6 @@ package de.telran.chinamarket.service.impl;
 import de.telran.chinamarket.entity.Photo;
 import de.telran.chinamarket.entity.Product;
 import de.telran.chinamarket.repository.ProductRepository;
-import de.telran.chinamarket.repository.CustomerRepository;
 import de.telran.chinamarket.repository.PhotoRepository;
 import de.telran.chinamarket.service.interfaces.PhotoService;
 import jakarta.persistence.EntityNotFoundException;

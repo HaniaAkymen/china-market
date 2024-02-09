@@ -1,12 +1,12 @@
 package de.telran.chinamarket.service.impl;
 
+import de.telran.chinamarket.repository.SecurityAccountRepository;
+import de.telran.chinamarket.service.interfaces.CustomerService;
 import de.telran.chinamarket.entity.Customer;
 import de.telran.chinamarket.entity.SecurityAccount;
 import de.telran.chinamarket.enums.CustomerInfoStatus;
 import de.telran.chinamarket.enums.UserRole;
 import de.telran.chinamarket.repository.CustomerRepository;
-import de.telran.chinamarket.repository.SecurityAccountRepository;
-import de.telran.chinamarket.service.interfaces.CustomerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -20,6 +20,7 @@ import java.util.Optional;
  *
  * @author Hanna Akymenko 28.01.2024.
  */
+
 @Service
 @RequiredArgsConstructor
 public class CustomerServiceImpl implements CustomerService {
@@ -30,32 +31,29 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Transactional
     @Override
-    public void saveCustomerByID(Customer customer) {
-        if (customer == null) {
-            return;
-        }
+    public void saveCustomer(String firstName, String lastName, String email, String password, String address, String phone) {
 
-        SecurityAccount securityAccount;
+        Customer customer = new Customer();
+        customer.setFirstName(firstName);
+        customer.setLastName(lastName);
+        customer.setEmail(email);
+        customer.setAddress(address);
+        customer.setPhone(phone);
+        customer.setStatus(CustomerInfoStatus.ACTIVE);
+        customerRepository.save(customer);
 
-        if (customer.getId() == null) {
-            securityAccount = new SecurityAccount();
-        }
-        else {
-            securityAccount = securityAccountRepository.findByLogin(customer.getEmail());
 
-        }
-
-        securityAccount.setRole(UserRole.CUSTOMER);
+        SecurityAccount securityAccount = new SecurityAccount();
+        securityAccount.setCustomerId(customer.getId());
         securityAccount.setLogin(customer.getEmail());
 
         BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
-        String encodePassword = bCryptPasswordEncoder.encode(customer.getPassword());
-
+        String encodePassword = bCryptPasswordEncoder.encode(password);
         securityAccount.setPassword(encodePassword);
 
-        customer.setStatus(CustomerInfoStatus.ACTIVE);
-        customer.setSecurityAccount(securityAccount);
-        customerRepository.save(customer);
+        securityAccount.setRole(UserRole.CUSTOMER);
+        securityAccountRepository.save(securityAccount);
+
 
     }
 

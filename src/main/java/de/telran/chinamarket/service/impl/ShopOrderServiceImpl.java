@@ -1,19 +1,17 @@
 package de.telran.chinamarket.service.impl;
 
+import de.telran.chinamarket.service.interfaces.ShopOrderService;
 import de.telran.chinamarket.entity.Customer;
 import de.telran.chinamarket.entity.ShopOrder;
 import de.telran.chinamarket.entity.ShopOrderProduct;
 import de.telran.chinamarket.entity.ShoppingCart;
-import de.telran.chinamarket.enums.CustomerInfoStatus;
 import de.telran.chinamarket.enums.DeliveryType;
 import de.telran.chinamarket.enums.PaymentType;
 import de.telran.chinamarket.enums.ShopOrderStatus;
 import de.telran.chinamarket.repository.CustomerRepository;
 import de.telran.chinamarket.repository.ShopOrderRepository;
 import de.telran.chinamarket.repository.ShoppingCartRepository;
-import de.telran.chinamarket.service.interfaces.ShopOrderService;
 import jakarta.persistence.EntityNotFoundException;
-import jakarta.persistence.criteria.Order;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -34,44 +32,60 @@ public class ShopOrderServiceImpl implements ShopOrderService {
 
     @Transactional
     @Override
-    public void saveOrder(PaymentType paymentType, DeliveryType deliveryType, Integer customerID){
+    public void saveOrder(PaymentType paymentType, DeliveryType deliveryType, Integer customerID) {
 
-        ShopOrder shopOrder = new ShopOrder();
-        shopOrder.setPaymentType(paymentType);
-        shopOrder.setDeliveryType(deliveryType);
-        shopOrder.setStatus(ShopOrderStatus.ACTIVE);
+        ShopOrder shopOrder = new ShopOrder(); //создание нового пустого заказа
+        shopOrder.setPaymentType(paymentType); //клиент передает тип оплаты в заказ
+        shopOrder.setDeliveryType(deliveryType); //клиент передает тип доставки в заказ
+        shopOrder.setStatus(ShopOrderStatus.ACTIVE); //при создании заказа, автоматически присваивается статус-Активный
 
-        Optional<Customer> customerOptional = customerRepository.findById(customerID);
+        Optional<Customer> customerOptional = customerRepository.findById(customerID);//вытаскиваем клиента по его ID
         if (!customerOptional.isPresent()) {
-            throw new EntityNotFoundException("customer not found");
+            throw new EntityNotFoundException("Сustomer not found");
         }
-        shopOrder.setCustomer(customerOptional.get());
+        shopOrder.setCustomer(customerOptional.get()); //установка клиента для данного заказа
 
-        List<ShoppingCart> shoppingCartList = shoppingCartRepository.getListByCustomerID(customerID);
-        List<ShopOrderProduct> shopOrderProductList = new ArrayList<>();
+        fillShopOrderProductList(shopOrder);//заполняет список товаров в заказе
 
+        shopOrderRepository.save(shopOrder);//сохраняем в базу заказ со всем списком товаров
 
-        for (ShoppingCart shoppingCart: shoppingCartList){
-            ShopOrderProduct shopOrderProduct = new ShopOrderProduct();
-            shopOrderProduct.setProduct(shoppingCart.getProduct());
-            shopOrderProduct.setQuantity(shoppingCart.getQuantity());
-            shopOrderProduct.setShopOrder(shopOrder);
+        shoppingCartRepository.deleteByCustomerID(customerID);//очищаем корзину
 
-            shopOrderProductList.add(shopOrderProduct);
+    }
+
+    //Добавление списка товаров в заказ
+
+    private void fillShopOrderProductList(ShopOrder shopOrder) {
+
+        List<ShoppingCart> shoppingCartList = shoppingCartRepository.getListByCustomerID(shopOrder.getCustomer().getId());//получаем список товаров в корзине определенного клиента
+
+        List<ShopOrderProduct> shopOrderProductList = new ArrayList<>();//создаем пустой список товаров в заказе
+
+        Integer totalQuantity = 0;//создаем переменную всего товаров в заказе
+
+        for (ShoppingCart shoppingCart : shoppingCartList) {//перебираем все продукты в корзине по одному
+            ShopOrderProduct shopOrderProduct = new ShopOrderProduct();//для каждого продукта из корзины создаем новый товар в заказе
+
+            shopOrderProduct.setProduct(shoppingCart.getProduct());//заполняем продукт
+            shopOrderProduct.setQuantity(shoppingCart.getQuantity());//заполняем количество
+            shopOrderProduct.setShopOrder(shopOrder);//заполняем заказ
+
+            shopOrderProductList.add(shopOrderProduct);//Добавляем новый элемент в список товаров в Заказе
+
+            totalQuantity += shopOrderProduct.getQuantity();;//добавляем кол-во одного продукта в переменную
+
         }
 
-        shopOrder.setShopOrderProducts(shopOrderProductList);
+        shopOrder.setShopOrderProducts(shopOrderProductList);//!!!сохраняем список товаров в заказе
 
-        shopOrderRepository.save(shopOrder);
-
-        shoppingCartRepository.deleteByCustomerID(customerID);
+        shopOrder.setTotalQuantity(totalQuantity);//сохраняем общее количество товаров в заказ
 
     }
 
     @Transactional
     @Override
 
-     public List<ShopOrder> getShopOrderList (){
+    public List<ShopOrder> getShopOrderList() {
         return shopOrderRepository.findAll();
 
     }
@@ -80,7 +94,7 @@ public class ShopOrderServiceImpl implements ShopOrderService {
     @Override
     public ShopOrder getShopOrderById(Integer id) {
         Optional<ShopOrder> optionalShopOrder = shopOrderRepository.findById(id);
-        if (optionalShopOrder.isPresent()){
+        if (optionalShopOrder.isPresent()) {
             return optionalShopOrder.get();
         } else {
             return null;
@@ -101,12 +115,6 @@ public class ShopOrderServiceImpl implements ShopOrderService {
 
         shopOrderRepository.save(shopOrderById);
     }
-
-
-
-
-
-
 
 
 }

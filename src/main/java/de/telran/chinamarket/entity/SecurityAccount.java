@@ -4,6 +4,7 @@ import de.telran.chinamarket.enums.UserRole;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -11,7 +12,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 /**
@@ -31,13 +31,20 @@ public class SecurityAccount implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer id;
+
     @Column(nullable = false, name = "login")
     private String login;
+
     @Column(nullable = false, name = "password")
     private String password;
+
     @Column(nullable = false, name = "role")
     @Enumerated(EnumType.STRING)
     private UserRole role;
+
+    @Getter
+    @Column(name = "customer_id")
+    private Integer customerId;
 
     private final static String ADDITIONAL_STRING = "ROLE_";
 
@@ -77,9 +84,6 @@ public class SecurityAccount implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
-
-
-
 
 
 }

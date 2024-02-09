@@ -1,7 +1,9 @@
 package de.telran.chinamarket.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import de.telran.chinamarket.enums.CustomerInfoStatus;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -33,32 +35,10 @@ public class Customer {
     @Column(nullable = false, name = "email")
     private String email;
 
-    @Column(nullable = false, length = 32, name = "password")
-    private String password;
-
     @Column(nullable = false, name = "address")
     private String address;
 
     @Column(nullable = false, length = 15, name = "phone")
     private String phone;
-
-    @OneToOne(cascade = CascadeType.ALL)
-    private SecurityAccount securityAccount;
-
-
-    //accuant
-    //admin
-    //manager
-
-
-
-
-
-
-
-
-
-
-
 
 }

@@ -17,9 +17,9 @@ public class Photo {
     @Column(name = "url")
     private String url;
 
-   @ManyToOne
-   @JsonIgnore
-   private Product product;
+    @ManyToOne
+    @JsonIgnore
+    private Product product;
 
 
 }

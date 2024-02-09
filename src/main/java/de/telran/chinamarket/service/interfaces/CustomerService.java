@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface CustomerService {
 
-    void saveCustomerByID(Customer customer);
+    void saveCustomer(String firstName, String lastName, String email, String password, String address, String phone);
 
     void setCustomerStatus(CustomerInfoStatus status, Integer id);
 

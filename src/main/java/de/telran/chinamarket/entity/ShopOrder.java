@@ -31,6 +31,9 @@ public class ShopOrder {
     @Enumerated(EnumType.STRING)
     private ShopOrderStatus status;
 
+    @Column(name = "total_quantity")
+    private Integer totalQuantity;
+
     @ManyToOne
     private Customer customer;
 

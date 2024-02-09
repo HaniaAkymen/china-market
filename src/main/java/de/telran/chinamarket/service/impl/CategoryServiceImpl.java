@@ -5,11 +5,9 @@ import de.telran.chinamarket.entity.Product;
 import de.telran.chinamarket.repository.CategoryRepository;
 import de.telran.chinamarket.repository.ProductRepository;
 import de.telran.chinamarket.service.interfaces.CategoryService;
-import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 

@@ -11,7 +11,4 @@ public class ShopOrderDTO {
 
     private DeliveryType deliveryType;
 
-    private Integer customerID;
-
-
-}
+   }

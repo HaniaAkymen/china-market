@@ -59,7 +59,6 @@ public class WebSecurityConfiguration {
     public PasswordEncoder passwordEncoder() {
         BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
         System.out.println(bCryptPasswordEncoder.encode("berlin"));
-        System.out.println(bCryptPasswordEncoder.encode("73487634874368G"));
         return bCryptPasswordEncoder;
 
     }
