@@ -32,7 +32,7 @@ public class ShopOrderServiceImpl implements ShopOrderService {
 
     @Transactional
     @Override
-    public void saveOrder(PaymentType paymentType, DeliveryType deliveryType, Integer customerID) {
+    public ShopOrder saveOrder(PaymentType paymentType, DeliveryType deliveryType, Integer customerID) {
 
         ShopOrder shopOrder = new ShopOrder(); //создание нового пустого заказа
         shopOrder.setPaymentType(paymentType); //клиент передает тип оплаты в заказ
@@ -50,6 +50,8 @@ public class ShopOrderServiceImpl implements ShopOrderService {
         shopOrderRepository.save(shopOrder);//сохраняем в базу заказ со всем списком товаров
 
         shoppingCartRepository.deleteByCustomerID(customerID);//очищаем корзину
+
+        return shopOrder;
 
     }
 

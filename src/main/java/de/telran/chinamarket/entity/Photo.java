@@ -17,6 +17,9 @@ public class Photo {
     @Column(name = "url")
     private String url;
 
+    @Column(name = "base64Image")
+    private String base64Image;
+
     @ManyToOne
     @JsonIgnore
     private Product product;

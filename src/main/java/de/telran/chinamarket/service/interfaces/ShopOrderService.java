@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface ShopOrderService {
 
-    void saveOrder(PaymentType paymentType, DeliveryType deliveryType, Integer customerID);
+    ShopOrder saveOrder(PaymentType paymentType, DeliveryType deliveryType, Integer customerID);
 
     List<ShopOrder> getShopOrderList();
 
