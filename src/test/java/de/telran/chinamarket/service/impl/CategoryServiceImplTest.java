@@ -79,7 +79,6 @@ class CategoryServiceImplTest {
         //проверка результата
         assertEquals(RootCategoryList, categoryList1);
         verify(categoryRepository, times(1)).getAllRootCategorys();
-
     }
 
     @Test//проверить
@@ -96,12 +95,9 @@ class CategoryServiceImplTest {
         when(categoryRepository.findById(3)).thenReturn(optionalCategory);
 
         //запустить сам метод
-
         categoryService.deleteCategory(3);
 
         //проверка результата
-
         verify(categoryRepository, times(1)).delete(tools);
     }
-
 }

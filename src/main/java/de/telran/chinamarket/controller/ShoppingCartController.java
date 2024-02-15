@@ -19,27 +19,19 @@ public class ShoppingCartController {
 
     @PostMapping(value = "/customer/shopping_cart/add_product_to_cart")
     public void addProductToCart(@AuthenticationPrincipal UserDetails userDetails, @RequestBody ShoppingCartProductDTO shoppingCartProductDTO){
-
         Integer customerId = ((SecurityAccount) userDetails).getCustomerId();
-
         shoppingCartService.addProductToCart(shoppingCartProductDTO.getProductID(),shoppingCartProductDTO.getQuantity(),customerId);
-
     }
 
     @DeleteMapping(value = "/customer/shopping_cart/delete_product_from_cart/{productId}")
     public void deleteProductFromCart(@AuthenticationPrincipal UserDetails userDetails, @PathVariable(value = "productId") Integer productId){
-
         Integer customerId = ((SecurityAccount) userDetails).getCustomerId();
-
         shoppingCartService.deleteProductFromCart(customerId, productId);
-
     }
 
     @PutMapping(value ="/customer/shopping_cart/change_quantity_product_from_cart")
     public void changeQuantityProductFromCart(@AuthenticationPrincipal UserDetails userDetails, @RequestBody ShoppingCartProductDTO shoppingCartProductDTO){
-
         Integer customerId = ((SecurityAccount) userDetails).getCustomerId();
-
         shoppingCartService.changeQuantityProductFromCart(shoppingCartProductDTO.getProductID(),shoppingCartProductDTO.getQuantity(), customerId);
     }
 

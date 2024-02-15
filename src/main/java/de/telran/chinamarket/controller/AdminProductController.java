@@ -15,33 +15,21 @@ public class AdminProductController {
 
     @PostMapping(value = "/admin/product/save")
     public void saveProduct(@RequestBody Product product) {
-        System.out.println(product.getName());
-
-        productService.save(product);
+       productService.save(product);
 
     }
     @PutMapping(value = "/admin/product/inactive/{id}")
     public void inactiveProduct(@PathVariable Integer id) {
-
         productService.inactiveById(id);
-
     }
 
     @PutMapping(value = "/admin/product/active/{id}")
     public void activeProduct(@PathVariable Integer id) {
-
         productService.activeById(id);
-
     }
 
     @GetMapping(value = "/admin/get_product_list" )
     public List<Product> getListProduct(){
-
        return productService.getAllProducts();
-
     }
-
-
-
-
 }

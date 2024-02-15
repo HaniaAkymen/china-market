@@ -30,7 +30,7 @@ class ShoppingCartServiceImplTest {
     @InjectMocks
     private ShoppingCartServiceImpl shoppingCartService;
 
-    @Test//не работает
+    @Test
     public void addProductToCart_ToysCat_success(){
         //задание начальных значений
      ShoppingCart shoppingCarProduct = new ShoppingCart();
@@ -51,12 +51,11 @@ class ShoppingCartServiceImplTest {
      when(productRepository.findById(6)).thenReturn(Optional.of(toysCat));
 
         //запустить сам метод
-     shoppingCartRepository.save(shoppingCarProduct);
+     shoppingCartService.addProductToCart(6,3, 8);
 
         //проверка результата
      verify(shoppingCartRepository, times(1)).save(shoppingCarProduct);
-
-      }
+    }
 
     @Test
     public void deleteProductFromCart_SamuraiUmbrella_success(){
@@ -78,7 +77,6 @@ class ShoppingCartServiceImplTest {
 
         //проверка результата
         verify(shoppingCartRepository, times(1)).delete(shoppingCart);
-
     }
     @Test
     public void changeQuantityProductFromCart_SamuraiUmbrella_success(){
@@ -104,7 +102,6 @@ class ShoppingCartServiceImplTest {
          //проверка результата
 
         verify(shoppingCartRepository, times(1)).save(shoppingCartChange);
-
     }
     @Test//проверить
     public void getListShoppingCart_success(){
@@ -141,13 +138,10 @@ class ShoppingCartServiceImplTest {
         when(shoppingCartRepository.getListByCustomerID(bobId)).thenReturn(shoppingCartList);
 
         //запустить сам метод
-        List<ShoppingCart> shoppingCartList1 = shoppingCartRepository.getListByCustomerID(8);
+        List<ShoppingCart> shoppingCartList1 = shoppingCartService.getListShoppingCart(bobId);
 
         //проверка результата
         assertEquals(shoppingCartList, shoppingCartList1);
         verify(shoppingCartRepository,times(1)).getListByCustomerID(8);
-
     }
-
-
 }

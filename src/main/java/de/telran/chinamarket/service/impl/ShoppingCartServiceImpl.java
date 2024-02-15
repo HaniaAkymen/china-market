@@ -20,9 +20,7 @@ import java.util.Optional;
 public class ShoppingCartServiceImpl implements ShoppingCartService {
 
     private final ShoppingCartRepository shoppingCartRepository;
-
     private final CustomerRepository customerRepository;
-
     private final ProductRepository productRepository;
 
     @Transactional
@@ -43,23 +41,19 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
             throw new EntityNotFoundException("product not found");
         }
         shoppingCartEntity.setProduct(productOptional.get());
-
         shoppingCartRepository.save(shoppingCartEntity);
     }
 
     @Transactional
     @Override
     public void deleteProductFromCart(Integer customerID, Integer productID) {
-
         ShoppingCart shoppingCartToDelete = shoppingCartRepository.getByProductIdAndCustomerId(customerID, productID);
-
         shoppingCartRepository.delete(shoppingCartToDelete);
     }
 
     @Transactional
     @Override
     public void changeQuantityProductFromCart(Integer productID, Integer quantity, Integer customerID) {
-
         ShoppingCart shoppingCartProductChange = shoppingCartRepository.getByProductIdAndCustomerId(customerID, productID);
 
         if (shoppingCartProductChange != null) {
@@ -68,8 +62,6 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
         } else {
             throw new EntityNotFoundException("product not found");
         }
-
-
     }
 
     @Transactional

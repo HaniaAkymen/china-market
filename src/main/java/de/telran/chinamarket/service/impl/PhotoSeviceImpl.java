@@ -27,13 +27,12 @@ import java.util.Optional;
 public class PhotoSeviceImpl implements PhotoService {
 
     private final PhotoRepository photoRepository;
-
     private final ProductRepository productRepository;
 
     @SneakyThrows
     @Transactional
     @Override
-    public void savePhoto(Integer productID, String url) {
+    public Photo savePhoto(Integer productID, String url) {
 
         Photo photo = new Photo();
         String base64Image = urlToBase64(url);
@@ -46,32 +45,24 @@ public class PhotoSeviceImpl implements PhotoService {
        }
        photo.setProduct(productOptional.get());
        photoRepository.save(photo);
+
+       return photo;
     }
+        private String urlToBase64(String imageURL) throws IOException {
 
-    @Transactional
-    @Override
-    public String urlToBase64(String imageURL) throws IOException {
-
-       java.net.URL url = new java.net.URL(imageURL);
-        byte[] imegeData = url.openStream().readAllBytes();
+        java.net.URL url = new java.net.URL(imageURL);
+        byte[] imegeData = url.openStream().readAllBytes(); //качает файл
 
         String base64Image = Base64.getEncoder().encodeToString(imegeData); //кодирует данные изображения в Base64
         return base64Image;
-
     }
-
-
     @Transactional
     @Override
     public void deletePhotoById(Integer id) {
-
         Optional<Photo> photoOptional = photoRepository.findById(id);
         if (!photoOptional.isPresent()) {
             return;
         }
-
         photoRepository.delete(photoOptional.get());
     }
-
-
 }

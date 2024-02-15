@@ -19,21 +19,14 @@ public class AdminShopOrderController {
 
     @GetMapping(value = "/admin/order/list")
     public List<ShopOrder> getShopOrderList(){
-
         return shopOrderService.getShopOrderList();
     }
-
     @GetMapping(value = "/admin/order/{id}")
     public ShopOrder getShopOrder(@PathVariable (name = "id") Integer id){
         return shopOrderService.getShopOrderById(id);
     }
-
     @PutMapping(value = "/admin/order/{id}/set_status/{status}")
     public void setShopOrderStatus(@PathVariable(name = "status")ShopOrderStatus status, @PathVariable(name = "id") Integer id) {
-
        shopOrderService.setShopOrderStatus(status, id);
     }
-
-
-
 }

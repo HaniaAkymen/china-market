@@ -26,13 +26,10 @@ import java.util.Optional;
 public class CustomerServiceImpl implements CustomerService {
 
     private final CustomerRepository customerRepository;
-
     private final SecurityAccountRepository securityAccountRepository;
-
     @Transactional
     @Override
-    public void saveCustomer(String firstName, String lastName, String email, String password, String address, String phone) {
-
+    public Customer saveCustomer(String firstName, String lastName, String email, String address, String phone) {
         Customer customer = new Customer();
         customer.setFirstName(firstName);
         customer.setLastName(lastName);
@@ -42,19 +39,25 @@ public class CustomerServiceImpl implements CustomerService {
         customer.setStatus(CustomerInfoStatus.ACTIVE);
         customerRepository.save(customer);
 
+        return customer;
+    }
+
+    @Transactional
+    @Override
+    public SecurityAccount saveSecurityAccount(Integer customerId, String customerEmail, String CustomerPassword){
 
         SecurityAccount securityAccount = new SecurityAccount();
-        securityAccount.setCustomerId(customer.getId());
-        securityAccount.setLogin(customer.getEmail());
+        securityAccount.setCustomerId(customerId);
+        securityAccount.setLogin(customerEmail);
 
         BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
-        String encodePassword = bCryptPasswordEncoder.encode(password);
+        String encodePassword = bCryptPasswordEncoder.encode(CustomerPassword);
         securityAccount.setPassword(encodePassword);
 
         securityAccount.setRole(UserRole.CUSTOMER);
         securityAccountRepository.save(securityAccount);
 
-
+        return securityAccount;
     }
 
     @Transactional
@@ -71,17 +74,13 @@ public class CustomerServiceImpl implements CustomerService {
     @Transactional
     @Override
     public void setCustomerStatus(CustomerInfoStatus status, Integer id) {
-
         Customer updateCustomer = getCustomerById(id);
         if (updateCustomer == null) {
             return;
         }
         updateCustomer.setStatus(status);
-
         customerRepository.save(updateCustomer);
     }
-
-
     @Transactional
     @Override
     public List<Customer> getAllCustomers() {
@@ -93,8 +92,6 @@ public class CustomerServiceImpl implements CustomerService {
     public List<Customer> getCustomersByStatus(String status) {
         return customerRepository.findCustomerByStatus(status);
     }
-
-
 }
 
 

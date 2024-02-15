@@ -30,11 +30,6 @@ public class Product {
     @Column(name = "big_description")
     private String bigDescription;
 
-//    @Column(name = "small_image_url")
-//    private String smallImageUrl;
-//
-//    @Column(name = "big_image_url")
-//    private String bigImageUrl;
 
     @Column(name = "price")
     private Double price;

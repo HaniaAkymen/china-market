@@ -1,5 +1,7 @@
 package de.telran.chinamarket.service.interfaces;
 
+import de.telran.chinamarket.entity.Photo;
+
 import java.io.IOException;
 import java.net.MalformedURLException;
 
@@ -10,11 +12,10 @@ import java.net.MalformedURLException;
  */
 public interface PhotoService {
 
-    void savePhoto(Integer productID, String url);
+    Photo savePhoto(Integer productID, String url);
 
     void deletePhotoById(Integer id);
 
-    public String urlToBase64(String url) throws IOException;
 
 
 }

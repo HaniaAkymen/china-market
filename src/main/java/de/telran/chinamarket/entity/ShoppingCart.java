@@ -17,7 +17,6 @@ public class ShoppingCart {
     @Column(name = "quantity")
     private Integer quantity;
 
-
     @ManyToOne
     private Product product;
 

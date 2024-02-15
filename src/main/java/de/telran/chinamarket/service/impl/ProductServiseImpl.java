@@ -26,7 +26,6 @@ public class ProductServiseImpl implements ProductService {
             throw new EntityNotFoundException("product " + id + " not found");
         }
     }
-
     @Override
     public void save(Product product) {
         productRepository.save(product);
@@ -34,40 +33,31 @@ public class ProductServiseImpl implements ProductService {
 
     @Override
     public void inactiveById(Integer id) {
-
         Product product = getByID(id);
         if (product == null){
             return;
         }
         product.setStatus(ProductStatus.INACTIVE);
         productRepository.save(product);
-
     }
 
     @Override
     public void activeById(Integer id) {
-
         Product product = getByID(id);
         if (product == null){
             return;
         }
         product.setStatus(ProductStatus.ACTIVE);
         productRepository.save(product);
-
     }
 
     @Override
     public List<Product> getProductsByCategoryId(Integer categoryId) {
-
        return productRepository.getProductsByCategoryId(categoryId);
-
     }
 
     @Override
-
     public List<Product> getAllProducts() {
-
         return productRepository.findAll();
-
     }
 }

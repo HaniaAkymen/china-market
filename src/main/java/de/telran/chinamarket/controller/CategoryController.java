@@ -24,8 +24,4 @@ public class CategoryController {
     public List<Category> getCategoryTree(){
         return categoryService.getAllRootCategorys();
     }
-
-
-
-
 }

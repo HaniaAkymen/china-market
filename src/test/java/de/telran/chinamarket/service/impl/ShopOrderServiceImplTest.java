@@ -65,9 +65,7 @@ class ShopOrderServiceImplTest {
         shoppingCartList.add(shoppingCart1);
         shoppingCartList.add(shoppingCart2);
 
-
         when(customerRepository.findById(8)).thenReturn(Optional.of(bob));
-
         when(shoppingCartRepository.getListByCustomerID(bobId)).thenReturn(shoppingCartList);
 
         //запустить сам метод
@@ -86,8 +84,20 @@ class ShopOrderServiceImplTest {
         assertEquals(shopOrder1.getShopOrderProducts().get(1).getQuantity(),3);
 
         verify(shoppingCartRepository, times(1)).deleteByCustomerID(8);
+    }
+
+    @Test
+    public void getShopOrderList_success() {
 
     }
 
+    @Test
+    public void getShopOrderById_success() {
 
+    }
+
+    @Test
+    public void setShopOrderStatus() {
+
+    }
 }

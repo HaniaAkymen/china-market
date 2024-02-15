@@ -1,13 +1,16 @@
 package de.telran.chinamarket.service.interfaces;
 
 import de.telran.chinamarket.entity.Customer;
+import de.telran.chinamarket.entity.SecurityAccount;
 import de.telran.chinamarket.enums.CustomerInfoStatus;
 
 import java.util.List;
 
 public interface CustomerService {
 
-    void saveCustomer(String firstName, String lastName, String email, String password, String address, String phone);
+    Customer saveCustomer(String firstName, String lastName, String email, String address, String phone);
+
+    SecurityAccount saveSecurityAccount(Integer customerId, String customerEmail, String CustomerPassword);
 
     void setCustomerStatus(CustomerInfoStatus status, Integer id);
 

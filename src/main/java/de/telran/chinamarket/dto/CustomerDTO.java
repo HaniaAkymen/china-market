@@ -29,5 +29,4 @@ public class CustomerDTO {
     @Digits(integer = 11, fraction = 0)
     private String phone;
 
-
 }

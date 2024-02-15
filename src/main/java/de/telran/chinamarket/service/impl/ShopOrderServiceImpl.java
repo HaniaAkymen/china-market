@@ -25,9 +25,7 @@ import java.util.Optional;
 public class ShopOrderServiceImpl implements ShopOrderService {
 
     private final ShoppingCartRepository shoppingCartRepository;
-
     private final ShopOrderRepository shopOrderRepository;
-
     private final CustomerRepository customerRepository;
 
     @Transactional
@@ -44,25 +42,17 @@ public class ShopOrderServiceImpl implements ShopOrderService {
             throw new EntityNotFoundException("Сustomer not found");
         }
         shopOrder.setCustomer(customerOptional.get()); //установка клиента для данного заказа
-
         fillShopOrderProductList(shopOrder);//заполняет список товаров в заказе
-
         shopOrderRepository.save(shopOrder);//сохраняем в базу заказ со всем списком товаров
-
         shoppingCartRepository.deleteByCustomerID(customerID);//очищаем корзину
-
         return shopOrder;
-
     }
-
     //Добавление списка товаров в заказ
 
     private void fillShopOrderProductList(ShopOrder shopOrder) {
-
+        //в отдельный сервис
         List<ShoppingCart> shoppingCartList = shoppingCartRepository.getListByCustomerID(shopOrder.getCustomer().getId());//получаем список товаров в корзине определенного клиента
-
         List<ShopOrderProduct> shopOrderProductList = new ArrayList<>();//создаем пустой список товаров в заказе
-
         Integer totalQuantity = 0;//создаем переменную всего товаров в заказе
 
         for (ShoppingCart shoppingCart : shoppingCartList) {//перебираем все продукты в корзине по одному
@@ -75,21 +65,15 @@ public class ShopOrderServiceImpl implements ShopOrderService {
             shopOrderProductList.add(shopOrderProduct);//Добавляем новый элемент в список товаров в Заказе
 
             totalQuantity += shopOrderProduct.getQuantity();;//добавляем кол-во одного продукта в переменную
-
         }
-
         shopOrder.setShopOrderProducts(shopOrderProductList);//!!!сохраняем список товаров в заказе
-
         shopOrder.setTotalQuantity(totalQuantity);//сохраняем общее количество товаров в заказ
-
     }
 
     @Transactional
     @Override
-
     public List<ShopOrder> getShopOrderList() {
         return shopOrderRepository.findAll();
-
     }
 
     @Transactional
@@ -101,22 +85,16 @@ public class ShopOrderServiceImpl implements ShopOrderService {
         } else {
             return null;
         }
-
     }
 
     @Transactional
     @Override
     public void setShopOrderStatus(ShopOrderStatus status, Integer id) {
-
         ShopOrder shopOrderById = getShopOrderById(id);
         if (shopOrderById == null) {
             return;
         }
-
         shopOrderById.setStatus(status);
-
         shopOrderRepository.save(shopOrderById);
     }
-
-
 }

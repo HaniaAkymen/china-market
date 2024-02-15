@@ -16,11 +16,10 @@ import java.util.Optional;
 public class CategoryServiceImpl implements CategoryService {
 
     private final CategoryRepository categoryRepository;
-
     private final ProductRepository productRepository;
 
     @Override
-    public Category getByID(Integer id){
+    public Category getByID(Integer id) {
         Optional<Category> optional;
         optional = categoryRepository.findById(id);
 
@@ -30,7 +29,6 @@ public class CategoryServiceImpl implements CategoryService {
             return null;
         }
     }
-
     @Override
     public void save(Category category){
         if (category == null) {
@@ -38,13 +36,10 @@ public class CategoryServiceImpl implements CategoryService {
         }
         categoryRepository.save(category);
     }
-
     @Override
     public List<Category> getAllRootCategorys() {
-
         return categoryRepository.getAllRootCategorys();
     }
-
     @Override
     public void deleteCategory(Integer id) {
             Category categoryDEl = getByID(id);
@@ -56,8 +51,5 @@ public class CategoryServiceImpl implements CategoryService {
             } else {
                 categoryRepository.delete(categoryDEl);
         }
-
     }
-
-
 }

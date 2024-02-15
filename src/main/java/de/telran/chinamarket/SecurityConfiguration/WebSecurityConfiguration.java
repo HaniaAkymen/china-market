@@ -1,4 +1,4 @@
-package de.telran.chinamarket;
+package de.telran.chinamarket.SecurityConfiguration;
 
 import de.telran.chinamarket.entity.SecurityAccount;
 import de.telran.chinamarket.repository.SecurityAccountRepository;

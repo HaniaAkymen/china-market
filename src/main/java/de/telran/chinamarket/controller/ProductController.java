@@ -22,18 +22,9 @@ public class ProductController {
     public Product getProductById(@PathVariable(value = "id") Integer id) {
         Product product = productService.getByID(id);
         return product;
-
     }
-
     @GetMapping(value = "/public/product/category/{id}")
     public List<Product> getProductsByCategory (@PathVariable(value = "id") Integer categoryId) {
         return productService.getProductsByCategoryId(categoryId);
-
     }
-
-
-
-
-
-
 }

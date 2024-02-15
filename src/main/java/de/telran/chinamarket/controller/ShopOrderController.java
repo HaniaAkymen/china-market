@@ -16,13 +16,9 @@ public class ShopOrderController {
 
     private final ShopOrderService shopOrderService;
 
-
     @PostMapping(value = "/customer/shop_order/save_order")
     public void addOrder(@RequestBody ShopOrderDTO shopOrderDTO, @AuthenticationPrincipal UserDetails userDetails){
-
         Integer customerId = ((SecurityAccount) userDetails).getCustomerId();
-
         shopOrderService.saveOrder(shopOrderDTO.getPaymentType(),shopOrderDTO.getDeliveryType(),customerId);
     }
-
 }

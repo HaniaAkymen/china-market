@@ -14,17 +14,9 @@ public class AdminCategoryController {
     @PostMapping(value = "/admin/category/save")
     public void saveCategory(@RequestBody Category category) {
         categoryService.save(category);
-
     }
-
     @DeleteMapping (value = "/admin/category/delete/{id}")
     public void deleteEmptyCategory(@PathVariable(value = "id") Integer id) {
-
         categoryService.deleteCategory(id);
-
     }
-
-
-
-
 }
