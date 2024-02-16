@@ -73,6 +73,7 @@ public class ShopOrderServiceImpl implements ShopOrderService {
     @Transactional
     @Override
     public List<ShopOrder> getShopOrderList() {
+
         return shopOrderRepository.findAll();
     }
 

@@ -5,7 +5,6 @@ import de.telran.chinamarket.entity.SecurityAccount;
 import de.telran.chinamarket.enums.CustomerInfoStatus;
 import de.telran.chinamarket.enums.UserRole;
 import de.telran.chinamarket.repository.CustomerRepository;
-import de.telran.chinamarket.repository.SecurityAccountRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -18,7 +17,6 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
@@ -26,14 +24,11 @@ import static org.mockito.Mockito.*;
 class CustomerServiceImplTest {
     @Mock
     private CustomerRepository customerRepository;
-    @Mock
-    private SecurityAccountRepository securityAccountRepository;
     @InjectMocks
     private CustomerServiceImpl customerService;
 
     @Test
     public void saveCustomer_bob_success() {
-
         Customer bob = new Customer();
         bob.setFirstName("Bob");
         bob.setLastName("Konig");
@@ -49,7 +44,6 @@ class CustomerServiceImplTest {
     }
     @Test
     public void saveSecurityAccount_success(){
-
         SecurityAccount securityAccount2 = customerService.saveSecurityAccount(2, "bob1983@gmail.com", "6387646gjhgjh");
 
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
@@ -71,13 +65,19 @@ class CustomerServiceImplTest {
         assertEquals(bob, bob2);
         verify(customerRepository, times(1)).findById(7);
     }
-
+    //проверить
     @Test
-    public void setCustomerStatus_success() {
+    public void setCustomerStatus_success(){
+        Customer gans = new Customer();
+        gans.setId(6);
+        gans.setStatus(CustomerInfoStatus.BLOCKED);
+        CustomerInfoStatus newStatus = CustomerInfoStatus.ACTIVE;
 
+        when(customerRepository.findById(6)).thenReturn(Optional.of(gans));
+
+        customerService.setCustomerStatus(newStatus, 6);
+        verify(customerRepository,times(1)).save(gans);
     }
-
-
     @Test
     public void getAllCustomers_success() {
         List<Customer> customerList = new ArrayList<>();
@@ -96,7 +96,7 @@ class CustomerServiceImplTest {
         assertEquals(customerList, customerList1);
         verify(customerRepository, times(1)).getAllCustomers();
     }
-   /* @Test
+    @Test // проверить!!!
     public void getCustomersByStatus_success() {
         List<Customer> customerList = new ArrayList<>();
         Customer gans = new Customer();
@@ -113,10 +113,9 @@ class CustomerServiceImplTest {
         customerList.add(bob);
         customerList.add(kira);
 
-        when(customerRepository.findCustomerByStatus()).thenReturn(customerList);
-        List<Customer> customerList1 = customerService.getCustomersByStatus();
+        when(customerRepository.findCustomerByStatus("ACTIVE")).thenReturn(customerList);
+        List<Customer> customerList1 = customerService.getCustomersByStatus("ACTIVE");
         assertEquals(customerList, customerList1);
-        verify(customerRepository, times(1)).findCustomerByStatus();
-
-    }*/
+        verify(customerRepository, times(1)).findCustomerByStatus("ACTIVE");
+    }
 }

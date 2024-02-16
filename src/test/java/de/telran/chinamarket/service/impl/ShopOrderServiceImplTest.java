@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
@@ -33,7 +33,6 @@ class ShopOrderServiceImplTest {
 
     @Test
     public void saveOrder_success(){
-        //задание начальных значений
         PaymentType paypal = PaymentType.PAYPAL;
         DeliveryType courier = DeliveryType.COURIER;
         Customer bob = new Customer();
@@ -64,15 +63,11 @@ class ShopOrderServiceImplTest {
 
         shoppingCartList.add(shoppingCart1);
         shoppingCartList.add(shoppingCart2);
-
         when(customerRepository.findById(8)).thenReturn(Optional.of(bob));
         when(shoppingCartRepository.getListByCustomerID(bobId)).thenReturn(shoppingCartList);
 
-        //запустить сам метод
-
         ShopOrder shopOrder1 = shopOrderService.saveOrder(paypal, courier, bobId);
 
-        //проверка результата
         assertEquals(shopOrder1.getPaymentType(), paypal);
         assertEquals(shopOrder1.getDeliveryType(), courier);
         assertEquals(shopOrder1.getCustomer(), bob);
@@ -86,18 +81,48 @@ class ShopOrderServiceImplTest {
         verify(shoppingCartRepository, times(1)).deleteByCustomerID(8);
     }
 
-    @Test
+    @Test //проверить
     public void getShopOrderList_success() {
+        List<ShopOrder> shopOrderList = new ArrayList<>();
 
+        ShopOrder shopOrder1 = new ShopOrder();
+        ShopOrder shopOrder2 = new ShopOrder();
+        ShopOrder shopOrder3= new ShopOrder();
+
+        shopOrderList.add(shopOrder1);
+        shopOrderList.add(shopOrder2);
+        shopOrderList.add(shopOrder3);
+        when(shopOrderRepository.findAll()).thenReturn(shopOrderList);
+
+        List<ShopOrder> shopOrderList1 = shopOrderService.getShopOrderList();
+
+        assertEquals(shopOrderList, shopOrderList1);
+        verify(shopOrderRepository, times(1)).findAll();
     }
 
-    @Test
+    @Test //проверить
     public void getShopOrderById_success() {
+        ShopOrder shopOrder1 = new ShopOrder();
+        shopOrder1.setId(8L);
 
+        when(shopOrderRepository.findById(8)).thenReturn(Optional.of(shopOrder1));
+
+        ShopOrder shopOrder2 = shopOrderService.getShopOrderById(8);
+
+        assertEquals(shopOrder1, shopOrder2);
+        verify(shopOrderRepository, times(1)).findById(8);
     }
 
-    @Test
-    public void setShopOrderStatus() {
+    @Test // проверить
+    public void setShopOrderStatus_success() {
+        ShopOrder shopOrder1 = new ShopOrder();
+        shopOrder1.setId(8L);
+        ShopOrderStatus newStatus = ShopOrderStatus.PAID;
 
+        when(shopOrderRepository.findById(8)).thenReturn(Optional.of(shopOrder1));
+
+        shopOrderService.setShopOrderStatus(newStatus,8);
+
+        verify(shopOrderRepository, times(1)).save(shopOrder1);
     }
 }
