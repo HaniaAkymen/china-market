@@ -65,7 +65,6 @@ class CustomerServiceImplTest {
         assertEquals(bob, bob2);
         verify(customerRepository, times(1)).findById(7);
     }
-    //проверить
     @Test
     public void setCustomerStatus_success(){
         Customer gans = new Customer();
@@ -96,7 +95,7 @@ class CustomerServiceImplTest {
         assertEquals(customerList, customerList1);
         verify(customerRepository, times(1)).getAllCustomers();
     }
-    @Test // проверить!!!
+    @Test
     public void getCustomersByStatus_success() {
         List<Customer> customerList = new ArrayList<>();
         Customer gans = new Customer();

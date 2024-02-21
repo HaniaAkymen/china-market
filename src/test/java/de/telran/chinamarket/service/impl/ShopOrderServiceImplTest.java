@@ -81,7 +81,7 @@ class ShopOrderServiceImplTest {
         verify(shoppingCartRepository, times(1)).deleteByCustomerID(8);
     }
 
-    @Test //проверить
+    @Test
     public void getShopOrderList_success() {
         List<ShopOrder> shopOrderList = new ArrayList<>();
 
@@ -100,7 +100,7 @@ class ShopOrderServiceImplTest {
         verify(shopOrderRepository, times(1)).findAll();
     }
 
-    @Test //проверить
+    @Test
     public void getShopOrderById_success() {
         ShopOrder shopOrder1 = new ShopOrder();
         shopOrder1.setId(8L);
@@ -113,7 +113,7 @@ class ShopOrderServiceImplTest {
         verify(shopOrderRepository, times(1)).findById(8);
     }
 
-    @Test // проверить
+    @Test
     public void setShopOrderStatus_success() {
         ShopOrder shopOrder1 = new ShopOrder();
         shopOrder1.setId(8L);

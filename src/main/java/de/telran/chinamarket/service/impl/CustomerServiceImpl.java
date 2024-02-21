@@ -41,7 +41,6 @@ public class CustomerServiceImpl implements CustomerService {
 
         return customer;
     }
-
     @Transactional
     @Override
     public SecurityAccount saveSecurityAccount(Integer customerId, String customerEmail, String CustomerPassword){
@@ -59,7 +58,6 @@ public class CustomerServiceImpl implements CustomerService {
 
         return securityAccount;
     }
-
     @Transactional
     @Override
     public Customer getCustomerById(Integer id) {
@@ -93,6 +91,5 @@ public class CustomerServiceImpl implements CustomerService {
         return customerRepository.findCustomerByStatus(status);
     }
 }
-
 
 

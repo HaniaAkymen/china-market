@@ -6,21 +6,60 @@ import de.telran.chinamarket.enums.CustomerInfoStatus;
 
 import java.util.List;
 
+/**
+ * Service interface for managing customers and their security accounts.
+ */
 public interface CustomerService {
 
+    /**
+     * Saves a new customer with the provided information.
+     *
+     * @param firstName the first name of the customer
+     * @param lastName  the last name of the customer
+     * @param email     the email address of the customer
+     * @param address   the address of the customer
+     * @param phone     the phone number of the customer
+     * @return the saved customer
+     */
     Customer saveCustomer(String firstName, String lastName, String email, String address, String phone);
 
+    /**
+     * Saves a new security account for the given customer.
+     * @param customerId the ID of the customer
+     * @param customerEmail the email address of the customer (used as login)
+     * @param CustomerPassword the password of the customer
+     * @return the saved security account
+     */
     SecurityAccount saveSecurityAccount(Integer customerId, String customerEmail, String CustomerPassword);
 
+    /**
+     * Sets the status of the customer with the specified ID.
+     *
+     * @param status the new status of the customer
+     * @param id the ID of the customer
+     */
     void setCustomerStatus(CustomerInfoStatus status, Integer id);
 
-    Customer getCustomerById(Integer id);//перенести администратору
+    /**
+     * Retrieves a customer by their unique identifier.
+     *
+     * @param id the identifier of the customer to retrieve
+     * @return the customer with the specified ID, or null if not found
+     */
+    Customer getCustomerById(Integer id);
 
+    /**
+     * Retrieves all customers.
+     *
+     * @return a list of all customers
+     */
     List<Customer> getAllCustomers();
 
+    /**
+     * Retrieves customers by their status.
+     *
+     * @param status the status of customers to retrieve
+     * @return a list of customers with the specified status
+     */
     List<Customer> getCustomersByStatus(String status); //сделать изменением парамметров?
-
-
-
-
 }

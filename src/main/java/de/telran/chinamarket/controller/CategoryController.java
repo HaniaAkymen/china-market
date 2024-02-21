@@ -22,6 +22,6 @@ public class CategoryController {
 
     @GetMapping(value= "/public/category/get_tree")
     public List<Category> getCategoryTree(){
-        return categoryService.getAllRootCategorys();
+        return categoryService.getAllRootCategories();
     }
 }

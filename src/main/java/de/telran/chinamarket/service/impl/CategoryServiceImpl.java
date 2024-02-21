@@ -37,7 +37,7 @@ public class CategoryServiceImpl implements CategoryService {
         categoryRepository.save(category);
     }
     @Override
-    public List<Category> getAllRootCategorys() {
+    public List<Category> getAllRootCategories() {
         return categoryRepository.getAllRootCategorys();
     }
     @Override
@@ -51,5 +51,9 @@ public class CategoryServiceImpl implements CategoryService {
             } else {
                 categoryRepository.delete(categoryDEl);
         }
+    }
+    @Override
+    public  List<Category> findAll() {
+        return categoryRepository.findAll();
     }
 }
