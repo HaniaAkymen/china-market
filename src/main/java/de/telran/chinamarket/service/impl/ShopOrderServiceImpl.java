@@ -20,6 +20,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Service implementation for managing shop orders.
+ * Реализация сервиса для управления заказами магазина.
+ * @author Hanna Akymenko
+ * @version 1.0
+ * @since 2024-01-28
+ */
+
 @Service
 @RequiredArgsConstructor
 public class ShopOrderServiceImpl implements ShopOrderService {
@@ -47,8 +55,12 @@ public class ShopOrderServiceImpl implements ShopOrderService {
         shoppingCartRepository.deleteByCustomerID(customerID);//очищаем корзину
         return shopOrder;
     }
-    //Добавление списка товаров в заказ
 
+    /**
+     * Fills the list of products in the shop order based on the customer's shopping cart.
+     * Заполняет список товаров в заказе на основе корзины покупок клиента
+     * @param shopOrder the shop order object for which the product list is to be filled/ Объект заказа магазина, для которого требуется заполнить список товаров
+     */
     private void fillShopOrderProductList(ShopOrder shopOrder) {
         //в отдельный сервис
         List<ShoppingCart> shoppingCartList = shoppingCartRepository.getListByCustomerID(shopOrder.getCustomer().getId());//получаем список товаров в корзине определенного клиента
@@ -69,14 +81,12 @@ public class ShopOrderServiceImpl implements ShopOrderService {
         shopOrder.setShopOrderProducts(shopOrderProductList);//!!!сохраняем список товаров в заказе
         shopOrder.setTotalQuantity(totalQuantity);//сохраняем общее количество товаров в заказ
     }
-
     @Transactional
     @Override
     public List<ShopOrder> getShopOrderList() {
 
         return shopOrderRepository.findAll();
     }
-
     @Transactional
     @Override
     public ShopOrder getShopOrderById(Integer id) {
@@ -87,7 +97,6 @@ public class ShopOrderServiceImpl implements ShopOrderService {
             return null;
         }
     }
-
     @Transactional
     @Override
     public void setShopOrderStatus(ShopOrderStatus status, Integer id) {

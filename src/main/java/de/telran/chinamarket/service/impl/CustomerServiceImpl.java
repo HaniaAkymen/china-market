@@ -16,9 +16,11 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * description
- *
- * @author Hanna Akymenko 28.01.2024.
+ * Implementation of the CustomerService interface for managing customers and their security accounts.
+ * Реализация интерфейса CustomerService для управления клиентами и их счетами безопасности.
+ * @author Hanna Akymenko
+ * version 1.0
+ * @since 2024-01-28
  */
 
 @Service

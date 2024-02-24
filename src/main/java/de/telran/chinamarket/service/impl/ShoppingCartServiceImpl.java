@@ -15,6 +15,13 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Implementation of the ShoppingCartService interface for managing customer shopping carts.
+ * Реализация интерфейса ShoppingCartService для управления корзинами покупок клиента.
+ * @author Hanna Akymenko
+ * @version 1.0
+ * @since 2024-01-28
+ */
 @Service
 @RequiredArgsConstructor
 public class ShoppingCartServiceImpl implements ShoppingCartService {

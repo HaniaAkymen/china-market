@@ -8,19 +8,19 @@ import de.telran.chinamarket.service.interfaces.PhotoService;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
-import org.hibernate.validator.constraints.URL;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.util.Base64;
 import java.util.Optional;
 
 /**
- * description
- *
- * @author Hanna Akymenko 28.01.2024.
+ * Implementation of the PhotoService interface.
+ * Реализация интерфейса PhotoService.
+ * @author Hanna Akymenko
+ * version 1.0
+ * @since 2024-01-28
  */
 @Service
 @RequiredArgsConstructor
@@ -48,7 +48,15 @@ public class PhotoSeviceImpl implements PhotoService {
 
        return photo;
     }
-        private String urlToBase64(String imageURL) throws IOException {
+
+    /**
+     * Converts an image from the given URL to Base64 format.
+     * Преобразует изображение с указанного URL в формат Base64.
+     * @param imageURL imageURL URL of the image
+     * @return Base64 representation of the image
+     * @throws IOException if an I/O error occurs
+     */
+    private String urlToBase64(String imageURL) throws IOException {
 
         java.net.URL url = new java.net.URL(imageURL);
         byte[] imegeData = url.openStream().readAllBytes(); //качает файл

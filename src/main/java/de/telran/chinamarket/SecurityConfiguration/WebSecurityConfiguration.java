@@ -38,7 +38,6 @@ public class WebSecurityConfiguration {
                         httpBasic.init(http));
 
         return http.build();
-
     }
 
     @Bean
@@ -60,8 +59,5 @@ public class WebSecurityConfiguration {
         BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
         System.out.println(bCryptPasswordEncoder.encode("berlin"));
         return bCryptPasswordEncoder;
-
     }
-
-
 }

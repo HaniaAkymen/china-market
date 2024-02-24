@@ -5,7 +5,6 @@ import lombok.Data;
 
 import java.util.List;
 
-
 @Table(name = "category")
 @Entity
 @Data
@@ -28,9 +27,4 @@ public class Category {
     @OneToMany
     @JoinColumn(name = "parent_category_id", referencedColumnName = "id")
     List<Category> subCategorys;
-
-
-
-
-
 }

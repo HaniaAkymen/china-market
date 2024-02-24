@@ -11,6 +11,14 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Implementation of the CategoryService interface for managing categories.
+ * Реализация интерфейса CategoryService для управления категориями.
+ * @author Hanna Akymenko
+ * version 1.0
+ * @since 2024-01-28
+ */
+
 @Service
 @RequiredArgsConstructor
 public class CategoryServiceImpl implements CategoryService {

@@ -7,10 +7,16 @@ import de.telran.chinamarket.service.interfaces.ProductService;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Service implementation for managing products.
+ * Реализация сервиса для управления продуктами.
+ * @author Hanna Akymenko
+ * @version 1.0
+ * @since 2024-01-28
+ */
 @Service
 @RequiredArgsConstructor
 public class ProductServiseImpl implements ProductService {
@@ -50,7 +56,6 @@ public class ProductServiseImpl implements ProductService {
         product.setStatus(ProductStatus.ACTIVE);
         productRepository.save(product);
     }
-
     @Override
     public List<Product> getProductsByCategoryId(Integer categoryId) {
        return productRepository.getProductsByCategoryId(categoryId);
