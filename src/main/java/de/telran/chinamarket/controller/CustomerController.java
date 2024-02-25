@@ -4,6 +4,7 @@ import de.telran.chinamarket.dto.CustomerDTO;
 import de.telran.chinamarket.entity.Customer;
 import de.telran.chinamarket.entity.SecurityAccount;
 import de.telran.chinamarket.service.interfaces.CustomerService;
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -22,6 +23,7 @@ public class CustomerController {
         return customer;
     }
     @PostMapping(value = "/public/customer/add")
+    @Operation(summary = "Создать нового пользователя", description = "Создает нового пользователя / измененяет пользователя при добавлении id в json")
     public void addNewCustomer(@RequestBody CustomerDTO customerDTO){
         Customer customer =  customerService.saveCustomer(customerDTO.getFirstName(), customerDTO.getLastName(), customerDTO.getEmail(), customerDTO.getAddress(), customerDTO.getPhone());
         customerService.saveSecurityAccount(customer.getId(), customer.getEmail(), customerDTO.getPassword());
