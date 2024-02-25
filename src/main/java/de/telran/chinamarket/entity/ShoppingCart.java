@@ -23,8 +23,6 @@ public class ShoppingCart {
     @JsonIgnore
     @ManyToOne
     private Customer customer;
-
-
 }
 
 

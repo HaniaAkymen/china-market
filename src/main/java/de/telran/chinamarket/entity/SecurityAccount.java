@@ -9,16 +9,10 @@ import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
-/**
- * Configuration for Web Security
- *
- * @author Hanna Akymenko on 04.02.2024.
- */
 
 @Entity
 @Table(name = "security_account")
@@ -84,6 +78,4 @@ public class SecurityAccount implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
-
-
 }

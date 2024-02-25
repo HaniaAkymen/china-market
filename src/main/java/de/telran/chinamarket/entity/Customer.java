@@ -9,7 +9,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.antlr.v4.runtime.misc.NotNull;
 
-
 @Entity
 @Table(name = "customer")
 @Data
@@ -40,5 +39,4 @@ public class Customer {
 
     @Column(nullable = false, length = 15, name = "phone")
     private String phone;
-
 }

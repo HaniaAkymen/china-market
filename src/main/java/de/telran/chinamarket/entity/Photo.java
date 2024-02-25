@@ -23,6 +23,4 @@ public class Photo {
     @ManyToOne
     @JsonIgnore
     private Product product;
-
-
 }

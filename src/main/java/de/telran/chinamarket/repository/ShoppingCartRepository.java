@@ -19,7 +19,6 @@ public interface ShoppingCartRepository extends JpaRepository<ShoppingCart, Inte
     @Query(nativeQuery = true, value = "SELECT * FROM shopping_cart WHERE customer_id = :customer_id AND product_id = :product_id AND quantity = :quantity")
     ShoppingCart getByProductIdAndCustomerIdAndQuantity(@Param(value = "customer_id") Integer customerID, @Param(value = "product_id") Integer productID, @Param(value = "quantity") Integer quantity);
 
-
     @Query(nativeQuery = true, value = "SELECT * FROM shopping_cart WHERE customer_id = :customer_id")
     List<ShoppingCart> getListByCustomerID(@Param(value = "customer_id") Integer customerID);
     @Modifying

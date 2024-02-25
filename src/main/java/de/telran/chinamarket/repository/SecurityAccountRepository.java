@@ -5,5 +5,4 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface SecurityAccountRepository extends CrudRepository<SecurityAccount, Integer> {
     SecurityAccount findByLogin(String Login);
-
 }

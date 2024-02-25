@@ -14,8 +14,9 @@ import org.springframework.security.web.SecurityFilterChain;
 
 /**
  * Configuration for Web Security
- *
- * @author Hanna Akymenko on 03.02.2024.
+ * @author Hanna Akymenko
+ * version 1.0
+ * @since 2024-02-03
  */
 
 @Configuration

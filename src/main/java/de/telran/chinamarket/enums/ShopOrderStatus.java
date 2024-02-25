@@ -7,5 +7,4 @@ public enum ShopOrderStatus {
     PAID,
     CANCELED,
     DELIVERED
-
 }

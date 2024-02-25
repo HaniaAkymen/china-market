@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import de.telran.chinamarket.enums.ProductStatus;
 import jakarta.persistence.*;
 import lombok.Data;
-
 import java.util.List;
 
 @Data
@@ -30,7 +29,6 @@ public class Product {
     @Column(name = "big_description")
     private String bigDescription;
 
-
     @Column(name = "price")
     private Double price;
 
@@ -40,7 +38,4 @@ public class Product {
     @ManyToOne
     @JsonIgnore
     private Category category;
-
-
-
 }

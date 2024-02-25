@@ -16,7 +16,6 @@ public class AdminProductController {
     @PostMapping(value = "/admin/product/save")
     public void saveProduct(@RequestBody Product product) {
        productService.save(product);
-
     }
     @PutMapping(value = "/admin/product/inactive/{id}")
     public void inactiveProduct(@PathVariable Integer id) {

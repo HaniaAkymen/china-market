@@ -5,8 +5,6 @@ import de.telran.chinamarket.enums.PaymentType;
 import de.telran.chinamarket.enums.ShopOrderStatus;
 import jakarta.persistence.*;
 import lombok.Data;
-
-
 import java.util.List;
 
 @Entity
@@ -39,6 +37,4 @@ public class ShopOrder {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "shopOrder")
     private List<ShopOrderProduct> shopOrderProducts;
-
-
 }
