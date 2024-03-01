@@ -112,7 +112,6 @@ class ShopOrderServiceImplTest {
         assertEquals(shopOrder1, shopOrder2);
         verify(shopOrderRepository, times(1)).findById(8);
     }
-
     @Test
     public void setShopOrderStatus_success() {
         ShopOrder shopOrder1 = new ShopOrder();

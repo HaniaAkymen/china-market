@@ -29,6 +29,7 @@ public class WebSecurityConfiguration {
                 .csrf(csrf -> csrf.disable()) //отключение "банковской" защиты
                 .cors(cors -> cors.disable()) //отключение защиты - информация только с одного домена (чтобы не внедрялся код в javascript)
                 .authorizeHttpRequests(request -> {
+                    request.requestMatchers("/swagger-ui/**", "/v3/api-docs/**", "/swagger-ui/index.index.html").permitAll();
                     request.requestMatchers("/admin/****").hasRole("ADMIN");
                     request.requestMatchers("/customer/**").hasRole("CUSTOMER");
                     request.requestMatchers("/public/***").permitAll();

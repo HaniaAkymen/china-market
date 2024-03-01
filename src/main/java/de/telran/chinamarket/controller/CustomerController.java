@@ -17,6 +17,7 @@ public class CustomerController {
     private final CustomerService customerService;
 
     @GetMapping(value = "/customer/get")
+    @Operation(summary = "Получить нового пользователя", description = "Получает информацию о новом пользователе")
     public Customer getCustomer(@AuthenticationPrincipal UserDetails userDetails) {
         Integer customerId = ((SecurityAccount) userDetails).getCustomerId();
         Customer customer = customerService.getCustomerById(customerId);

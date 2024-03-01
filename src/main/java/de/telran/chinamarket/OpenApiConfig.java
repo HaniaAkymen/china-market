@@ -16,10 +16,10 @@ import io.swagger.v3.oas.models.security.SecurityRequirement;
  * Класс конфигурации для документации OpenAPI.
  * Этот класс настраивает документацию OpenAPI для API china-market.
  * Он определяет схемы безопасности и основную информацию об API, такую как название и версия.
- * Этот класс конфигурации создает пользовательский бин OpenAPI с указанной схемой безопасности и информацией об API.</p>
+ * Этот класс конфигурации создает пользовательский бин OpenAPI с указанной схемой безопасности и информацией об API.
  * @author Hanna Akymenko
  * version 1.0
- * @since 2024-02-14
+ * @since 2024-02-22
  */
 @Configuration
 public class OpenApiConfig {

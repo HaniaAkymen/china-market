@@ -2,6 +2,7 @@ package de.telran.chinamarket.service.impl;
 
 import de.telran.chinamarket.entity.Category;
 import de.telran.chinamarket.repository.CategoryRepository;
+import de.telran.chinamarket.repository.ProductRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -15,9 +16,10 @@ import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class CategoryServiceImplTest {
-
     @Mock
     private CategoryRepository categoryRepository;
+    @Mock
+    private ProductRepository productRepository;
     @InjectMocks
     private CategoryServiceImpl categoryService;
 
@@ -28,7 +30,6 @@ class CategoryServiceImplTest {
 //        tools.setName("Tools");
 //        tools.setDescription("Good Tools");
 //    }
-
     @Test
     public void getById_Category_Umbrellas_success(){
         Category umbrellas = new Category();
@@ -85,6 +86,7 @@ class CategoryServiceImplTest {
         Optional<Category> optionalCategory= Optional.of(tools);
 
         when(categoryRepository.findById(3)).thenReturn(optionalCategory);
+        when(productRepository.getProductsByCategoryId(3)).thenReturn(new ArrayList<>());
 
         //запустить сам метод
         categoryService.deleteCategory(3);

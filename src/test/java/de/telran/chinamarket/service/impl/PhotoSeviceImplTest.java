@@ -52,8 +52,5 @@ class PhotoSeviceImplTest {
         photoSevice.deletePhotoById(2);
 
         verify(photoRepository, times(1)).delete(photoUmbrella);
-
-
     }
-
 }
